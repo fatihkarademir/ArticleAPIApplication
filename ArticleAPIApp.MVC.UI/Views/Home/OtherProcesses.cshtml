@@ -1,0 +1,47 @@
+﻿@model ArticleListModel
+@{
+    ViewData["Title"] = "OtherProcesses";
+    Layout = "~/Views/Shared/_LayoutCRUD.cshtml";
+}
+
+<h1>OtherProcesses</h1>
+<hr />
+
+@if (Model.Articles.Count() > 0)
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td style="width:30px;">ArticleId</td>
+                <td style="width:50px;">Title</td>
+                <td style="width:250px;">Content</td>
+                <td style="width:100px;"></td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in Model.Articles)
+            {
+                <tr>
+                    <td>@article.ArticleId</td>                  
+                    <td>@article.Title</td>
+                    <td>@article.Content.Substring(0,50)...</td>
+                    <td>
+                        @*<a class="btn btn-primary btn-sm mr-2" href="/admin/products/@product.Id">Edit</a>*@
+                        <a class="btn btn-primary btn-sm mr-2" asp-controller="Home" asp-action="EditArticle" asp-route-id="@article.ArticleId">Güncelle</a>
+                        <form action="/Home/DeleteArticle" method="post" style="display:inline;">
+                            <input type="hidden" name="ArticleId" value="@article.ArticleId" />
+                            <button type="submit" class="btn btn-danger btn-sm">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="alert alert-warning">
+        <h4>No Products</h4>
+    </div>
+}

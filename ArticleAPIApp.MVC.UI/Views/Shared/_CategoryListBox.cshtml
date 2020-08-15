@@ -1,0 +1,27 @@
+﻿@model List<ArticleAPIApp.Entities.Category>
+@{
+    Layout = null;
+}
+
+
+
+
+@*@if (Model.IsActive)
+    {
+
+        <li><a href="blog.html">@Model.Name</a></li>
+    }*@
+
+<div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <ul>
+        @foreach (var item in Model)
+        {
+            if (item.IsActive)
+            {
+                <li><a asp-controller="Home" asp-action="Index" asp-route-categoryId="@item.CategoryId">@item.Name</a></li>
+            }
+        }
+
+    </ul>
+</div> <!-- .widget -->

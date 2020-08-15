@@ -1,0 +1,46 @@
+﻿@model ArticleAPIApp.Entities.Article
+
+@{
+    ViewData["Title"] = "EditArticle";
+    Layout = "~/Views/Shared/_LayoutCRUD.cshtml";
+}
+
+
+
+<h4>Edit Article</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">
+                <strong>Uyarı ! <span style="text-decoration:underline;">İşlem Başarısız</span> </strong> @ViewBag.Error
+            </div>
+        }
+    <form asp-controller="Home" asp-action="EditArticle" method="post">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" name="ArticleId" value="@Model.ArticleId" />
+        <div class="form-group">
+            <label asp-for="Title" class="control-label"></label>
+            <input asp-for="Title" value="@Model.Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Content" class="control-label"></label>
+            <input asp-for="Content" value="@Model.Content" class="form-control" />
+
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Güncelle" class="btn btn-primary" />
+        </div>
+
+
+    </form>
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="OtherProcesses">Listeye Geri Dön</a>
+</div>

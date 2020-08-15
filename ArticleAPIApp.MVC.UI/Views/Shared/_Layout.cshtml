@@ -1,0 +1,94 @@
+﻿
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <title>Home - Canvas - A Free Website Template by Donny Burnside</title>
+
+    <link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    @*<link media="all" type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
+    <link media="all" type="text/css" href="css/core.css" rel="stylesheet">
+    <link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
+    <link media="all" type="text/css" href="css/custom.css" rel="stylesheet">*@
+
+    <link href="~/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/css/core.css" rel="stylesheet" />
+    <link href="~/css/blue.css" rel="stylesheet" />
+    <link href="~/css/custom.css" rel="stylesheet" />
+</head>
+<body class="home" itemscope itemtype="http://schema.org/WebPage">
+
+    <div id="site-header" role="banner">
+        <div class="container">
+            <div class="row">
+
+
+                <div id="branding">
+                    <a class="logo" href="/Home/Index">AnaSayfa</a>
+                </div>
+
+                <nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+                    <ul class="horizontal-navigation">
+                        <li class="menu-home active" itemprop="url"><a href="/Home/CreateArticle">Makale Ekle</a></li>
+                        <li class="menu-about" itemprop="url"><a href="/Home/OtherProcesses" title="OtherProcesses" itemprop="name">Diğer işlemler</a></li>
+
+                    </ul>
+                </nav> <!-- #main-menu -->
+
+            </div> <!-- .row -->
+        </div> <!-- .container -->
+    </div> <!-- #site-header -->
+
+    <div id="masthead">
+        <div id="page-title">
+            <div class="container">
+                <div class="row">
+
+                    <h1 class="entry-title" itemprop="headline">TURKGEN .NET DEVELOPER DEGERLENDİRME</h1>
+                    <p class="description" itemprop="description">Bu proje TURKGEN tarafından .NET Developer değerlendirme mülakatı için Fatih Karademir tarafından mülakat projesi olarak hazırlanmıştır.</p>
+
+                </div> <!-- .row -->
+            </div> <!-- .container -->
+        </div> <!-- #page-title -->
+    </div> <!-- #masthead -->
+
+    <main id="content" role="main">
+
+        <div class="section">
+            <div class="container">
+                <div class="row">
+
+                    @RenderBody()
+
+                </div> <!-- .row -->
+            </div> <!-- .container -->
+        </div> <!-- .section -->
+
+    </main> <!-- #content -->
+
+
+
+
+    <footer id="footer" role="contentinfo">
+        <div class="container">
+            <div class="row">
+
+                <div class="copyright">&copy; Canvas 2015</div>
+                <div class="attribution">Web Design by <a href="http://www.donnyburnside.com" title="Web Design by Donny Burnside" target="_blank">Donny Burnside</a>.</div>
+
+            </div> <!-- .row -->
+        </div> <!-- .container -->
+    </footer> <!-- #footer -->
+    <!-- Scripts -->
+    @*<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+        <script type="text/javascript" src="js/custom.js"></script>*@
+    <script src="~/js/jquery-1.11.2.min.js"></script>
+    <script src="~/js/custom.js"></script>
+</body>
+</html>

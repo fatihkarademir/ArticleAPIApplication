@@ -1,0 +1,73 @@
+﻿@model ArticleAPIApp.MVC.UI.Models.ArticleListModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="three-quarters-block">
+    <div class="content">
+
+        @foreach (Article item in Model.Articles)
+        {
+            <article class="post hentry" itemscope itemprop="blogPost" itemtype="http://schema.org/Article">
+
+                <header class="entry-header">
+
+                    <h2 class="entry-title" itemprop="headline">@item.Title</h2>
+
+                    <div class="entry-meta">
+
+                        <span class="post-date">
+                            <i class="fa fa-clock-o fa-fw"></i> <span class="updated">@item.CreateDate.ToShortDateString()</span>
+                        </span> <!-- .post-date -->
+
+                        <span class="post-author">
+                            <i class="fa fa-user fa-fw"></i> Written by @item.Author.Name @item.Author.Surname
+                            <span class="vcard"><a class="fn url" href="author.html"></a></span>
+                        </span> <!-- .post-author -->
+
+                        <span class="post-categories">
+                            <i class="fa fa-folder fa-fw"></i> <a href="blog.html" rel="tag">@item.Category.Name</a>
+                        </span> <!-- .post-categories -->
+                        @*<span class="post-tags">
+                                <i class="fa fa-tags fa-fw"></i> <a href="blog.html" rel="tag">Tag A</a>, <a href="blog.html" rel="tag">Tag B</a>, <a href="blog.html" rel="tag">Tag C</a>
+                            </span>*@ <!-- .post-tags -->
+
+                    </div> <!-- .entry-meta -->
+
+                </header> <!-- .entry-header -->
+
+                <div class="entry-image">
+                    <img src="http://dummyimage.com/800x150/f3f3f3/d1d1d1.jpg&text=Featured+Image" alt="Featured Image" itemprop="image">
+                </div> <!-- .entry-image -->
+
+                <div class="entry-content col-lg-8" itemprop="articleBody" >
+                    <p class="col-lg-8">
+                       @for (int i = 0; i < item.Content.Length; i++)
+                       {
+                           @item.Content[i]
+                           if (i != 0 && i % 89 == 0)
+                           {
+                               <br />
+                           }
+                       }
+                    </p>
+                </div> <!-- .entry-content -->
+
+            </article> <!-- .post -->
+            <br />
+            <hr />
+            <br />
+        }
+
+    </div> <!-- .content -->
+</div> <!-- .three-quarters-block -->
+
+<div class="one-quarter-block" role="complementary">
+    <div class="sidebar">
+
+    <partial name="_CategoryListBox" for="@Model.CategoryLists" />
+       
+    </div> <!-- .sidebar -->
+</div> <!-- .one-quarter-block -->

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ArticleAPIApp.DataAccess\ArticleAPIApp.DataAccess.csproj" />
+    <ProjectReference Include="..\ArticleAPIApp.Entities\ArticleAPIApp.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

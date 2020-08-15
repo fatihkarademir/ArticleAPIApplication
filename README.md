@@ -32,3 +32,5 @@ Proje temelde mini bir anasayfa dan ve article ekleme,silme ve güncelleme den o
 Ben test verisi sistem çalıştığında yazarları ve kategorileri veri tabanına eklesin diye bir static class üzeinden veri tabanına eklenecek şekilde koydum. 
 Tabi bunlar proje içerisinde eklenebilir olmalı. Sayfalama işlemleri ve üyelik sistemi mevcut değil projede bunlar eklenebilir. 
 
+Eklemek istediğim yorum :
+APIden beslenen MVC.UI katmanıda ekledim projeye case'de bu şekilde yapılması gerek diye anladım.

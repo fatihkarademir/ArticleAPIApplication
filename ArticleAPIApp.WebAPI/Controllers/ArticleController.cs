@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ArticleAPIApp.Business.Abstract;
 using ArticleAPIApp.Entities;
 using ArticleAPIApp.WebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +13,7 @@ namespace ArticleAPIApp.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticleController : ControllerBase
+    public class ArticleController : BaseController // ControllerBase
     {
 
         IArticleService _articleService;
@@ -58,6 +59,7 @@ namespace ArticleAPIApp.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles ="admin")]
         public ServiceResult<Article> Post([FromBody]Article article)
         {
             try
@@ -72,6 +74,7 @@ namespace ArticleAPIApp.WebAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles ="gelmesinburaya")]
         public ServiceResult<Article> Put([FromBody]Article article)
         {
             try

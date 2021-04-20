@@ -18,6 +18,9 @@ namespace ArticleAPIApp.DataAccess.Concrete.EfCore
                                .Include(i => i.Author)
                                .Include(i => i.Category)
                                .Where(i => i.CategoryId == catId).ToList();
+
+                //Sadece Articles nesnesini verir. Category ve Author nesneleri de dolu gelsin istiyor isek Include vermemiz gerekir.
+                //context.Articles.Where(i => i.CategoryId == catId).ToList();
             }
         }
 

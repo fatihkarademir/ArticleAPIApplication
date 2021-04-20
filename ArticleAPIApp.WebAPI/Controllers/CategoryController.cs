@@ -12,7 +12,7 @@ namespace ArticleAPIApp.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoryController : BaseController // ControllerBase
     {
 
         ICategoryService _categoryService;

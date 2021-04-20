@@ -5,20 +5,22 @@ using System.Threading.Tasks;
 using ArticleAPIApp.Business.Abstract;
 using ArticleAPIApp.Entities;
 using ArticleAPIApp.MVC.UI.Models;
+using ArticleAPIApp.WebAPI.Models;
+using ContentService;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ArticleAPIApp.MVC.UI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : UIBaseController
     {
 
-       
-        ContentService _service;
-        public HomeController(ContentService contentService)
-        {          
-            _service = contentService;
-        }
+        //ApiService _service;
+        //public HomeController()
+        //{
+        //    _service = new ApiService(HttpContext);
+        //}
+        
         public IActionResult Index(int categoryId = 0)
         {
             var categories = _service.GetCategories().Datas;
@@ -146,5 +148,7 @@ namespace ArticleAPIApp.MVC.UI.Controllers
             bool result = _service.DeleteArticle(articleId).IsSucces;
             return RedirectToAction("OtherProcesses");
         }
+
+
     }
 }

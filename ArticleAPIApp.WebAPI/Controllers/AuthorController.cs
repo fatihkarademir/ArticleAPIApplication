@@ -12,7 +12,7 @@ namespace ArticleAPIApp.WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthorController : ControllerBase
+    public class AuthorController : BaseController //  ControllerBase
     {
         IAuthorService _authorService;
 

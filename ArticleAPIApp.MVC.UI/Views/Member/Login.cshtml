@@ -1,0 +1,47 @@
+﻿@model LoginDTO
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_LayoutCRUD.cshtml";
+}
+
+<div class="content-wrap" id="content" role="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 p-2" style="min-height:400px">
+                <div>
+                    <h2 class="slide-title page-title">
+                        Hesabınıza giriş yapınız !
+                    </h2>
+                </div>
+                @*@if (ViewBag.ServiceResponse != null)
+                    {
+                        <div class="alert alert-warning" role="alert">
+                            @ViewBag.ServiceResponse.message
+                        </div>
+                    }*@
+
+                <form asp-controller="Member" asp-action="Login" method="post">
+                    <div class="mt-3">
+                        <div class="form-group">
+                            <label @*asp-for="Email"*@ class="">Mail Adresiniz</label>
+                            <input id="Email Address" type="email" class="form-control" asp-for="Email">
+                        </div>
+                        <div class="form-group">
+                            <label @*asp-for="Password"*@ class="">Şifreniz</label>
+                            <input id="Password" type="password" class="form-control" asp-for="Password">
+
+                        </div>
+                        <br>
+
+                    </div>
+                    <div>
+                        <button>Giriş Yap</button> <a class="float-right">Şifremi Unuttum?</a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+

@@ -24,14 +24,14 @@ namespace ArticleAPIApp.WebAPI.Controllers
     [AllowAnonymous]
     public class AccountController : BaseController //BaseController
     {
-        //private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         private CustomTokenOption _tokenOptions { get; }
         //private readonly CustomTokenOption _tokenOption;
 
-        public AccountController(/*UserManager<IdentityUser> userManager,*/IConfiguration configuration)//,IOptions<CustomTokenOption> options
+        public AccountController(UserManager<IdentityUser> userManager,IConfiguration configuration)//,IOptions<CustomTokenOption> options
         {
-            //_userManager = userManager;
+            _userManager = userManager;
             _configuration = configuration;
             _tokenOptions = configuration.GetSection("TokenOption").Get<CustomTokenOption>();
         }
@@ -39,14 +39,14 @@ namespace ArticleAPIApp.WebAPI.Controllers
         [HttpPost]
         [Route("Login")]
         [AllowAnonymous]
-        public ServiceResult<AutResponse> Login([FromBody] LoginModel model)
+        public async Task<ServiceResult<AutResponse>> Login([FromBody] LoginModel model)
         {
-            //var user = await _userManager.FindByNameAsync(model.UserName);
+            var user = await _userManager.FindByNameAsync(model.UserName);
 
-            //if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-            if (model.UserName == "fatih@asd" && model.Password == "123")
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            //if (model.UserName == "fatih@asd" && model.Password == "123")
             {
-                //var userRoles = await userManager.GetRolesAsync(user);
+                var userRoles = await _userManager.GetRolesAsync(user);
                 var claims = new List<Claim>
                 {
                     //new Claim(JwtRegisteredClaimNames.Sub,user.UserName),
@@ -111,6 +111,40 @@ namespace ArticleAPIApp.WebAPI.Controllers
             };
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var user = new ApplicationUser
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                FullName = model.FullName
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            if (result.Succeeded)
+            {
+                // generate token
+                // send email
+                return RedirectToAction("account", "login");
+            }
+
+            ViewBag.ErrorMessage = result.Errors.Select(i => i.Description).ToList();
+
+            return View(model);
+        }
+
+       
+
+
+        #region Private Methods
         private JwtSecurityToken CreateToken(ApplicationUser user)
         {
             //yukarıda yada bunu kullanabilirsin
@@ -132,5 +166,6 @@ namespace ArticleAPIApp.WebAPI.Controllers
 
             return token;
         }
+        #endregion
     }
 }

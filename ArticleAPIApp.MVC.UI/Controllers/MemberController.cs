@@ -1,10 +1,12 @@
 ﻿using ArticleAPIApp.Entities.DTOs;
 using ContentService;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace ArticleAPIApp.MVC.UI.Controllers
@@ -23,7 +25,7 @@ namespace ArticleAPIApp.MVC.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Login(LoginDTO loginDTO)
+        public async Task<IActionResult> Login(LoginDTO loginDTO)
         {
             var result = _service.Login(new Entities.DTOs.LoginDTO() { UserName = loginDTO.Email, Email = loginDTO.Email, Password = loginDTO.Password });
 
@@ -31,8 +33,23 @@ namespace ArticleAPIApp.MVC.UI.Controllers
             //cookie.Expires = DateTime.Now.AddYears(1);
             //Response.Cookies.Append("token", result.Data.Token, cookie);
 
-            HttpContext.Session.SetString("token", result.Data.Token);
+            //HttpContext.Session.SetString("token", result.Data.Token);
+            if (result.IsSucces)
+            {
+                var claims = new List<Claim>
+                {
+                    //new Claim("Email", result.Data.Email),
+                    new Claim("Token", result.Data.Token),
+                    new Claim("IsAuth", result.Data.IsAuth.ToString()),
+                    new Claim(ClaimTypes.Role, "clientAuth")
+                };
 
+                var userIdentity = new ClaimsIdentity(claims, "clientAuth");
+                ClaimsPrincipal principal = new ClaimsPrincipal(userIdentity);
+                await HttpContext.SignInAsync(principal);
+
+                return Redirect("/Home/Index");
+            }
             return Redirect("/Home/Index");
         }
     }

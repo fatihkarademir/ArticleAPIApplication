@@ -59,11 +59,12 @@ namespace ArticleAPIApp.WebAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles ="admin")]
+        //[Authorize(Roles ="admin")]
         public ServiceResult<Article> Post([FromBody]Article article)
         {
             try
             {
+                string role = ApiGlobal.GetRole(HttpContext);
                 _articleService.Create(article);
                 return new ServiceResult<Article>() { IsSucces = true};
             }

@@ -25,14 +25,16 @@ namespace ArticleAPIApp.WebAPI.Controllers
     public class AccountController : BaseController //BaseController
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
         private CustomTokenOption _tokenOptions { get; }
         //private readonly CustomTokenOption _tokenOption;
 
-        public AccountController(UserManager<IdentityUser> userManager,IConfiguration configuration)//,IOptions<CustomTokenOption> options
+        public AccountController(UserManager<IdentityUser> userManager,IConfiguration configuration, SignInManager<IdentityUser> signInManager)//,IOptions<CustomTokenOption> options
         {
             _userManager = userManager;
             _configuration = configuration;
+            _signInManager = signInManager;
             _tokenOptions = configuration.GetSection("TokenOption").Get<CustomTokenOption>();
         }
 
@@ -41,12 +43,12 @@ namespace ArticleAPIApp.WebAPI.Controllers
         [AllowAnonymous]
         public async Task<ServiceResult<AutResponse>> Login([FromBody] LoginModel model)
         {
-            var user = await _userManager.FindByNameAsync(model.UserName);
+            //var user = await _userManager.FindByNameAsync(model.UserName);
 
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-            //if (model.UserName == "fatih@asd" && model.Password == "123")
+            //if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            if (model.UserName == "fatih@asd" && model.Password == "123")
             {
-                var userRoles = await _userManager.GetRolesAsync(user);
+                //var userRoles = await _userManager.GetRolesAsync(user);
                 var claims = new List<Claim>
                 {
                     //new Claim(JwtRegisteredClaimNames.Sub,user.UserName),
@@ -71,6 +73,8 @@ namespace ArticleAPIApp.WebAPI.Controllers
                     expires: DateTime.Now.AddHours(1),
                     claims: claims,
                     signingCredentials: new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256));
+
+                //_signInManager.PasswordSignInAsync(model.UserName)
 
                 return new ServiceResult<AutResponse>()
                 {

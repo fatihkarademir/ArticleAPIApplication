@@ -85,7 +85,11 @@ namespace ArticleAPIApp.MVC.UI.Controllers
         [HttpPost]
         public IActionResult CreateArticle(Article article)
         {
+            //İsmailin HttpContext.SignInAsync methoduyla birlikte kullanılabilir oluyor.
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
 
+            }
             GetCategoriesWithListItems();
             GetAuthorsWithListItems();
             ServiceResult<Article> result = _service.CreateArticle(article);
@@ -102,6 +106,11 @@ namespace ArticleAPIApp.MVC.UI.Controllers
         [HttpGet]
         public IActionResult EditArticle(int? id)
         {
+            //İsmailin HttpContext.SignInAsync methoduyla birlikte kullanılabilir oluyor.
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+
+            }
             if (id == null)
             {
                 return NotFound();
@@ -116,6 +125,11 @@ namespace ArticleAPIApp.MVC.UI.Controllers
         [HttpPost]
         public IActionResult EditArticle(Article article)
         {
+            //İsmailin HttpContext.SignInAsync methoduyla birlikte kullanılabilir oluyor.
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+
+            }
             var entity = _service.GetArticle(article.ArticleId).Data;
 
             if (entity == null)
@@ -140,6 +154,11 @@ namespace ArticleAPIApp.MVC.UI.Controllers
         [HttpPost]
         public IActionResult DeleteArticle(int articleId)
         {
+            //İsmailin HttpContext.SignInAsync methoduyla birlikte kullanılabilir oluyor.
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+
+            }
             var entity = _service.GetArticle(articleId).Data;
             if (entity == null)
             {

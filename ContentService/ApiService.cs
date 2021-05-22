@@ -35,11 +35,11 @@ namespace ContentService
             client = new HttpClient();
             client.DefaultRequestHeaders.Add("ApiKey", Key);
             
-            var token = context.Session.GetString("token");
+            //var token = context.Session.GetString("token");
             var token1 = context.User.Claims.FirstOrDefault(c => c.Type == "Token")?.Value;
-            if (token != null)
+            if (token1 != null)
             {
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token1);
             }
         }
 

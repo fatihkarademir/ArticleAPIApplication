@@ -1,4 +1,5 @@
 ﻿using ArticleAPIApp.Entities.DTOs;
+using ArticleAPIApp.WebAPI.Models;
 using ContentService;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;

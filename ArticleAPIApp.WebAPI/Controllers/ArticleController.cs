@@ -80,6 +80,7 @@ namespace ArticleAPIApp.WebAPI.Controllers
         {
             try
             {
+                string role = ApiGlobal.GetRole(HttpContext);
                 _articleService.Update(article);
                 return new ServiceResult<Article>() { IsSucces = true };
             }
@@ -94,6 +95,7 @@ namespace ArticleAPIApp.WebAPI.Controllers
         {
             try
             {
+                string role = ApiGlobal.GetRole(HttpContext);
                 _articleService.Delete(_articleService.GetById(id));
                 return new ServiceResult<Article>() { IsSucces = true };
             }

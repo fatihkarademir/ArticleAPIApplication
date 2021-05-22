@@ -125,6 +125,11 @@ namespace ArticleAPIApp.WebAPI
                         //appSettings'den gelen objenin instance'ýný olusturma iþlemini yukarýda gerçekleþtridik. Buradaki tüm deðerleri tek yerden yönetmek için kullanlabilir ki kullanýyorum. Baþka deðerler içinde kullanýlabilir.
 
                         //Identity ile userManager , roleManager gibi özellikler ile kullanýcý logini ve hazýr üyelik için gerekli tablolarý login ve logut iþlemlerini yönetiyoruz. JWT ile Autharization ve Authentication iþlemlerini yönetiyoruz.
+
+
+                        //Tokendaki Claimslerden de Role leri string role = ApiGlobal.GetRole(HttpContext); bu methodu kullanarak alabiliyoruz. [Authrorize] attrsinde tokený deðiþtirip gönderirsek zaten forbidden 403 yada 401 hatasý alýyoruz. Bu Attryi kaldýrýp ApiGlobal den Claimsdeki deðerleri okumaya çalýþýrsak ve ayný þekilde tokený deðiþtirip gönderirsek claimsler null olarak atanýyor ve bu method bir role bulamýyor. Buradan da güvenlik altýna alabiliyoruz Apilerimizi. CreateArticle EditArticle Delete lerde ArticleControllelar da örnekleri var. Ayrýca _Layout ta da bunu butonlarý saklamak için kullandým. Denedim ama butonlarý Layout ta saklayamadým. Çünkü View de gönderdiðim Context nesnesi Role olarak UI da benim eklediðim role olan clientAuth u ve diðer claimleri alýyor. GetRole e gittiðinde admin rolünü bulamýyor. Apilere giden HttpContext nesnesinde admin rolü gidiyor. 2.1
+
+
                     };
                 });
             #endregion

@@ -13,9 +13,9 @@
 
     <link media="all" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
     @*<link media="all" type="text/css" href="css/font-awesome.min.css" rel="stylesheet">
-    <link media="all" type="text/css" href="css/core.css" rel="stylesheet">
-    <link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
-    <link media="all" type="text/css" href="css/custom.css" rel="stylesheet">*@
+        <link media="all" type="text/css" href="css/core.css" rel="stylesheet">
+        <link media="all" type="text/css" href="css/skins/red.css" rel="stylesheet">
+        <link media="all" type="text/css" href="css/custom.css" rel="stylesheet">*@
 
     <link href="~/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/core.css" rel="stylesheet" />
@@ -35,7 +35,16 @@
 
                 <nav id="main-menu" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
                     <ul class="horizontal-navigation">
-                        <li class="menu-home active" itemprop="url"><a href="/Home/CreateArticle">Makale Ekle</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @if (ApiGlobal.GetRole(Context) == "admin")
+                            {
+                                var role = ApiGlobal.GetRole(Context);
+                                <li class="menu-home active" itemprop="url"><a href="/Home/CreateArticle">Makale Ekle</a></li>
+                            }
+                        }
+
+
                         <li class="menu-about" itemprop="url"><a href="/Home/OtherProcesses" title="OtherProcesses" itemprop="name">Diğer işlemler</a></li>
 
                     </ul>

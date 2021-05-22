@@ -25,27 +25,27 @@ namespace ArticleAPIApp.MVC.UI
             services.AddControllersWithViews();
             services.AddMvc(option => option.EnableEndpointRouting = false);
 
-            //Session kullanabilmek için bu ayar ile Configure daki app.UserSession() ý ekledik. Ayrýca Nugettan Microsoft.AspNetCore.Session ý ekledik.
+            //Session kullanabilmek için bu ayar ile Configure daki app.UserSession() ý ekledik. Ayrýca Nugettan Microsoft.AspNetCore.Session ý ekledik.1.0
             //services.AddSession();
             //services.AddScoped<IAuthorDAL, EfCoreAuthorDAL>();
             //services.AddScoped<ICategoryDAL, EfCoreCategoryDAL>();
             //services.AddScoped<IAuthorService, AuthorService>();
             //services.AddScoped<ICategoryService, CategoryService>();
             //services.AddSingleton<ContentService>(new ContentService().getInstance());
-
+            //Session kullanabilmek için bu ayar ile Configure daki app.UserSession() ý ekledik. Ayrýca Nugettan Microsoft.AspNetCore.Session ý ekledik.1.1
             //services.AddAuthentication();
 
 
-            // Ýsmailin HttpContext.SignInAsync methoduyla birlikte kullanýlabilir oluyor.
+            // Ýsmailin HttpContext.SignInAsync methoduyla birlikte kullanýlabilir oluyor. 2.0
             //if (HttpContext.User.Identity.IsAuthenticated)
             //{
 
             //}
 
-            //Tokendaki Claimslerden de Role leri string role = ApiGlobal.GetRole(HttpContext); bu methodu kullanarak alabiliyoruz. [Authrorize] attrsinde tokený deðiþtirip gönderirsek zaten forbidden 403 yada 401 hatasý alýyoruz. Bu Attryi kaldýrýp ApiGlobal den Claimsdeki deðerleri okumaya çalýþýrsak ve ayný þekilde tokený deðiþtirip gönderirsek claimsler null olarak atanýyor ve bu method bir role bulamýyor. Buradan da güvenlik altýna alabiliyoruz Apilerimizi.
+            //Tokendaki Claimslerden de Role leri string role = ApiGlobal.GetRole(HttpContext); bu methodu kullanarak alabiliyoruz. [Authrorize] attrsinde tokený deðiþtirip gönderirsek zaten forbidden 403 yada 401 hatasý alýyoruz. Bu Attryi kaldýrýp ApiGlobal den Claimsdeki deðerleri okumaya çalýþýrsak ve ayný þekilde tokený deðiþtirip gönderirsek claimsler null olarak atanýyor ve bu method bir role bulamýyor. Buradan da güvenlik altýna alabiliyoruz Apilerimizi. CreateArticle EditArticle Delete lerde ArticleControllelar da örnekleri var. Ayrýca _Layout ta da bunu butonlarý saklamak için kullandým. 2.1
 
 
-            //Ýsmailin SignInAsync Methodunu kullanabilmek için bu ayarlarý yapýyoruz
+            //Ýsmailin SignInAsync Methodunu kullanabilmek için bu ayarlarý yapýyoruz 2.2
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
              .AddCookie(options =>
              {

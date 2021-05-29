@@ -7,6 +7,7 @@ using ArticleAPIApp.Entities;
 using ArticleAPIApp.MVC.UI.Models;
 using ArticleAPIApp.WebAPI.Models;
 using ContentService;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 

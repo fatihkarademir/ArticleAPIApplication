@@ -46,6 +46,8 @@ namespace ArticleAPIApp.MVC.UI
 
 
             //Ýsmailin SignInAsync Methodunu kullanabilmek için bu ayarlarý yapýyoruz 2.2
+            // if(HttpContext.User.Identity.IsAuthenticated) bunu kullanabiliyoruz.
+            // Authorize attrsini de kullanabiliriz. Login methodunda Apiye gidip doðrulanýrsa kullanýcý SignInAsnyc oluyor ve HttpCpntext e yazýlýyor. Authorize attrsi bu ayarlarla birlikte cookie ye login olunduðu için kontrol edip eðer kullanýcý login olamaz ise Member/Login e yönlendirir. Bu þekilde Api den tekrar tekrar doðrulama yapmadan da yönetim yapabiliriz.
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
              .AddCookie(options =>
              {
